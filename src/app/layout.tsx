@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Poppins, Syncopate, IBM_Plex_Mono } from "next/font/google";
 import StyledComponentsRegistry from '../../lib/registry';
 import "./globals.css";
-import {Header} from "@/components/header";
-import {Footer} from "@/components/footer";
+import {Header} from "../components/Header";
+import {Footer} from "../components/Footer";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],

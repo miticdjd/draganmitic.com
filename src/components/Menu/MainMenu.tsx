@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import {Arrow} from "@/components/Icons/Arrow";
-import {MobileMenu} from "@/components/menu/MobileMenu";
+import {MobileMenu} from "@/components/Menu/MobileMenu";
 
 export const MainMenu = () => {
 

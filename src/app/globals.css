@@ -18,3 +18,11 @@ body {
 
   font-size: 14px;
 }
+
+h1 {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: var(--font-ibm-plex-mono);
+}

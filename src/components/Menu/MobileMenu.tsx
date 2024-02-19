@@ -1,9 +1,9 @@
 'use client';
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Hamburger} from "@/components/Icons/Hamburger";
-import {Logo} from "@/components/logo";
-import {Footer} from "@/components/footer";
+import {Logo} from "../Logo";
+import {Footer} from "../Footer";
 import Link from "next/link";
 
 export const MobileMenu = () => {
@@ -14,23 +14,21 @@ export const MobileMenu = () => {
        <Container className="flex md:hidden" onClick={() => setActivated(!activate)}>
             <Hamburger />
 
-           {activate &&
-               <Menu className="px-8">
-                   <Header>
-                       <Logo fill={'white'} />
-                       <Hamburger fill={'white'} />
-                   </Header>
-                   <Actions>
-                       <Link href="/">
-                           <Action>About</Action>
-                       </Link>
-                       <Link href="/">
-                           <Action>Contact</Action>
-                       </Link>
-                   </Actions>
-                   <Footer dark={true} />
-               </Menu>
-           }
+           <Menu open={activate} className="px-8">
+               <Header>
+                   <Logo fill={'white'} />
+                   <Hamburger fill={'white'} />
+               </Header>
+               <Actions>
+                   <Link href="/">
+                       <Action>About</Action>
+                   </Link>
+                   <Link href="/">
+                       <Action>Contact</Action>
+                   </Link>
+               </Actions>
+               <Footer dark={true} />
+           </Menu>
        </Container>
    );
 }
@@ -43,7 +41,7 @@ const Container = styled.div`
     }
 `;
 
-const Menu  = styled.div`
+const Menu  = styled.div<{open: boolean}>`
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -55,6 +53,16 @@ const Menu  = styled.div`
     bottom: 0;
     background-color: var(--navy-100);
     z-index: 99;
+    transform: scale(0);
+    transition: transform 200ms;
+    transform-origin: top right;
+
+    ${({ open }) =>
+            open && css`
+            transform: scale(1);
+            transition: transform 0.25s;
+        `
+    }
 `;
 
 const Header = styled.div`
