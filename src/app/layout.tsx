@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Syncopate } from "next/font/google";
+import { Poppins, Syncopate, IBM_Plex_Mono } from "next/font/google";
 import StyledComponentsRegistry from '../../lib/registry';
 import "./globals.css";
 import {Header} from "@/components/header";
@@ -17,6 +17,12 @@ const syncopate = Syncopate({
     variable: '--font-syncopate'
 });
 
+const ibmPlexMono = IBM_Plex_Mono({
+    weight: ['100', '200', '300', '400', '500', '600', '700'],
+    subsets: ['latin'],
+    variable: '--font-ibm-plex-mono'
+});
+
 export const metadata: Metadata = {
   title: "Dragan Mitić",
   description: "Welcome to Dragan Mitić’s Digital Hub!",
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${syncopate.variable} font-sans`}>
+      <body className={`${poppins.variable} ${syncopate.variable} ${ibmPlexMono.variable} font-sans`}>
         <StyledComponentsRegistry>
             <div className="container mx-auto flex flex-col px-8 h-screen">
                 <Header />
