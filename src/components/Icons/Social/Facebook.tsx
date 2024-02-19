@@ -1,0 +1,28 @@
+import React from 'react';
+import styled from "styled-components";
+
+export interface LogoProps {
+    width?: string;
+    height?: string;
+    fill?: string;
+}
+
+export const Facebook = ({ width = '25px', height = '26px', fill = 'black' }: LogoProps) => {
+    return (
+        <Svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 25 26" fill={fill}>
+            <g clipPath="url(#clip0_102_198)">
+                <path
+                    d="M24.6094 13C24.6094 6.31055 19.1895 0.890625 12.5 0.890625C5.81055 0.890625 0.390625 6.31055 0.390625 13C0.390625 19.0439 4.81885 24.0537 10.6079 24.9629V16.5005H7.53174V13H10.6079V10.332C10.6079 7.29736 12.4146 5.62109 15.1816 5.62109C16.5068 5.62109 17.8926 5.85742 17.8926 5.85742V8.83594H16.3652C14.8613 8.83594 14.3921 9.76953 14.3921 10.7271V13H17.7505L17.2134 16.5005H14.3921V24.9629C20.1812 24.0537 24.6094 19.0439 24.6094 13Z" />
+            </g>
+            <defs>
+                <clipPath id="clip0_102_198">
+                    <rect width="25" height="25" fill="white" transform="translate(0 0.5)"/>
+                </clipPath>
+            </defs>
+        </Svg>
+    );
+};
+
+const Svg = styled.svg`
+    display: inline-block;
+`;

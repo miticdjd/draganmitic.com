@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import "./globals.css";
+import { Poppins, Syncopate } from "next/font/google";
 import StyledComponentsRegistry from '../../lib/registry';
+import "./globals.css";
+import {Header} from "@/components/header";
+import {Footer} from "@/components/footer";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-    subsets: ['latin']
+    subsets: ['latin'],
+    variable: '--font-poppins'
+});
+
+const syncopate = Syncopate({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    variable: '--font-syncopate'
 });
 
 export const metadata: Metadata = {
@@ -20,10 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={`${poppins.variable} ${syncopate.variable} font-sans`}>
         <StyledComponentsRegistry>
-            <div className="container mx-auto flex flex-row">
+            <div className="container mx-auto flex flex-col px-8 h-screen">
+                <Header />
                 {children}
+                <Footer />
             </div>
         </StyledComponentsRegistry>
       </body>

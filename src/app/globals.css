@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+
+  --dark-100: #1F1F1F;
+  --navy-100: #0F1B67;
+  --white-100: #F5F5FA;
+  --white-0: #FFFFFF;
+}
+
 body {
-  background-color: white;
+  background-color: var(--white-0);
+  color: var(--dark-100);
+
+  font-size: 14px;
 }
