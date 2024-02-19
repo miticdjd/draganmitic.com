@@ -5,6 +5,7 @@ import {ArrowRound} from "@/components/Icons/ArrowRound";
 import {motion} from 'framer-motion';
 import {H1} from "@/components/Text/H1";
 import {Paragraph} from "@/components/Text/Paragraph";
+import {Button} from "@/components/Button";
 
 export default function Home() {
     return (
@@ -29,9 +30,9 @@ export default function Home() {
                     <Paragraph>As the CEO of Hefes Technology Group, I lead a passionate team dedicated to empowering digital landscapes through cutting-edge software solutions. Our journey is fueled by a relentless pursuit of  excellence, and we take pride in crafting digital experiences that transcend expectations.</Paragraph>
                     <Paragraph>I invite you to check out my latest projects and feel free to contact me if you require any assistance. I am confident I can provide you with the help you need.</Paragraph>
                     <div className="flex justify-center">
-                        <CTA className="flex w-full lg:w-48">
+                        <Button>
                             send a message <ArrowRound/>
-                        </CTA>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -50,22 +51,4 @@ export default function Home() {
 
 const Photo = styled.div`
     position: relative;
-`;
-
-const CTA = styled.button`
-    height: 36px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75em;
-    padding: 0.5em;
-    border-radius: 0.75em;
-    background-color: var(--navy-100);
-    color: var(--white-100);
-    font-family: var(--font-syncopate);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `;
