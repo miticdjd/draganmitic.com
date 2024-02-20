@@ -9,14 +9,14 @@ import {Instagram} from "@/components/Icons/Social/Instagram";
 import {Facebook} from "@/components/Icons/Social/Facebook";
 
 interface FooterProps {
-    dark?: boolean;
+    dark: boolean;
 }
 
 export const Footer = (props: FooterProps) => {
     const { dark } = props;
 
    return (
-       <Container dark={dark} className="flex flex-col md:flex-row gap-3 md:gap-0">
+       <Container dark={dark ? 1 : 0} className="flex flex-col md:flex-row gap-3 md:gap-0">
             <Copyright className="text-center md:text-left">
                 Made with <Heart /> by <Link href="https://hefesgroup.com">HTG</Link>. All rights reserved Dragan Mitić.
             </Copyright>
@@ -30,7 +30,7 @@ export const Footer = (props: FooterProps) => {
    );
 }
 
-const Container = styled.div<{ dark?: boolean }>`
+const Container = styled.div<{ dark: number }>`
     width: 100%;
     padding: 37px 32px;
     color: ${({ dark }) => dark ? 'var(--white-100)' : 'var(--dark-100)'}
