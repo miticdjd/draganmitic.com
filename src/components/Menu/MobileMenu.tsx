@@ -23,7 +23,7 @@ export const MobileMenu = () => {
                    <Link href="/">
                        <Action>About</Action>
                    </Link>
-                   <Link href="/">
+                   <Link href="/contact">
                        <Action>Contact</Action>
                    </Link>
                </Actions>

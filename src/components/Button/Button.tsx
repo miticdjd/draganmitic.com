@@ -3,12 +3,18 @@ import styled from "styled-components";
 
 interface Props {
    children: ReactNode;
+   onClick?: any;
 }
 
 export const Button = (props: Props) => {
-   const { children } = props;
+   const { children, onClick } = props;
 
-   return <Container className="flex w-full lg:w-48">{children}</Container>;
+   return <Container
+       className="flex w-full lg:w-48"
+       onClick={() => onClick && onClick()}
+      >
+      {children}
+   </Container>;
 }
 
 const Container = styled.button`

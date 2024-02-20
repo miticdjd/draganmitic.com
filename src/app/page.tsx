@@ -6,6 +6,7 @@ import {motion} from 'framer-motion';
 import {H1} from "@/components/Text/H1";
 import {Paragraph} from "@/components/Text/Paragraph";
 import {Button} from "@/components/Button";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -30,9 +31,11 @@ export default function Home() {
                     <Paragraph>As the CEO of Hefes Technology Group, I lead a passionate team dedicated to empowering digital landscapes through cutting-edge software solutions. Our journey is fueled by a relentless pursuit of  excellence, and we take pride in crafting digital experiences that transcend expectations.</Paragraph>
                     <Paragraph>I invite you to check out my latest projects and feel free to contact me if you require any assistance. I am confident I can provide you with the help you need.</Paragraph>
                     <div className="flex justify-center">
-                        <Button>
-                            send a message <ArrowRound/>
-                        </Button>
+                        <Link href="/contact">
+                            <Button>
+                                send a message <ArrowRound/>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export const MainMenu = () => {
                    <MenuLink>About</MenuLink>
                </Link>
                <Link
-                   href="/"
+                   href="/contact"
                    passHref
                    onMouseEnter={() => setCtaHover(true)}
                    onMouseLeave={() => setCtaHover(false)}

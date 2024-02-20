@@ -26,3 +26,11 @@ h1 {
   line-height: normal;
   font-family: var(--font-ibm-plex-mono);
 }
+
+h2 {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: var(--font-ibm-plex-mono);
+}
