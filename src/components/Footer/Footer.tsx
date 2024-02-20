@@ -21,10 +21,10 @@ export const Footer = (props: FooterProps) => {
                 Made with <Heart /> by <Link href="https://hefesgroup.com">HTG</Link>. All rights reserved Dragan Mitić.
             </Copyright>
            <div className="flex justify-center md:justify-end gap-4">
-               <Link href="https://github.com"><GitHub fill={dark ? 'white' : 'black'} /></Link>
-               <Link href="https://linkedin.com"><Linkedin fill={dark ? 'white' : 'black'} /></Link>
-               <Link href="https://instagram.com"><Instagram fill={dark ? 'white' : 'black'} /></Link>
-               <Link href="https://facebook.com"><Facebook fill={dark ? 'white' : 'black'} /></Link>
+               <Link href="https://github.com/miticdjd" target="_blank"><GitHub fill={dark ? 'white' : 'black'} /></Link>
+               <Link href="https://www.linkedin.com/in/miticdjd/" target="_blank"><Linkedin fill={dark ? 'white' : 'black'} /></Link>
+               <Link href="https://www.instagram.com/miticdjd" target="_blank"><Instagram fill={dark ? 'white' : 'black'} /></Link>
+               <Link href="https://www.facebook.com/draganhtg" target="_blank"><Facebook fill={dark ? 'white' : 'black'} /></Link>
            </div>
        </Container>
    );
