@@ -9,9 +9,38 @@ import {Text} from "@/components/Input/Text";
 import {Textarea} from "@/components/Input/Textarea";
 import {useState} from "react";
 import {H2} from "@/components/Text/H2";
+import {useFormik} from "formik";
+import * as Yup from 'yup';
+import {Spinner} from "@/components/Spinner";
 
 export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+    const form = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required('Required'),
+            email: Yup.string().email('Invalid email address').required('Required'),
+            message: Yup.string().required('Required'),
+        }),
+        onSubmit: async values => {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+
+            if (response.status === 200) {
+                setIsSubmitted(true);
+            }
+        },
+    });
 
     return (
         <motion.div className="flex grow flex-col lg:flex-row gap-3 lg:gap-0" initial="hidden" animate="visible"
@@ -35,22 +64,45 @@ export default function Contact() {
                 </div>
             </div>
             {!isSubmitted && (
-                <div className="w-full lg:w-3/6 flex flex-col justify-start p-8 gap-4">
-                    <Text
-                        label="Name"
-                        placeholder="Enter your name"
-                    />
-                    <Text
-                        label="E-mail address"
-                        placeholder="Enter your e-mail address"
-                    />
-                    <Textarea
-                        label="Message"
-                        placeholder="Enter your message"
-                    />
-                    <Button onClick={() => { setIsSubmitted(true) }}>
-                        send
-                    </Button>
+                <div className="w-full lg:w-3/6 flex flex-col justify-start p-8">
+                    <form onSubmit={form.handleSubmit} className="flex flex-col gap-4">
+                        <Text
+                            field="name"
+                            label="Name"
+                            placeholder="Enter your name"
+                            handleChange={form.handleChange}
+                            handleBlur={form.handleBlur}
+                            value={form.values.name}
+                            error={form.errors.name}
+                            touched={form.touched.name}
+                        />
+                        <Text
+                            field="email"
+                            label="E-mail address"
+                            placeholder="Enter your e-mail address"
+                            handleChange={form.handleChange}
+                            handleBlur={form.handleBlur}
+                            value={form.values.email}
+                            error={form.errors.email}
+                            touched={form.touched.email}
+                        />
+                        <Textarea
+                            field="message"
+                            label="Message"
+                            placeholder="Enter your message"
+                            handleChange={form.handleChange}
+                            handleBlur={form.handleBlur}
+                            value={form.values.message}
+                            error={form.errors.message}
+                            touched={form.touched.message}
+                        />
+                        <Button type="submit" disabled={form.isSubmitting}>
+                            send
+                            {form.isSubmitting && (
+                                <Spinner />
+                            )}
+                        </Button>
+                    </form>
                 </div>
             )}
             {isSubmitted && (

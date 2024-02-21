@@ -1,19 +1,35 @@
 'use client';
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 interface TextProps {
+    field: string;
     label: string;
     placeholder: string;
+    handleChange: (e: React.ChangeEvent<any>) => void;
+    handleBlur: (e: React.ChangeEvent<any>) => void;
+    value: string;
+    error: string | undefined;
+    touched: boolean | undefined;
 }
 
 export const Textarea = (props: TextProps) => {
-    const { label, placeholder } = props;
+    const { field, label, placeholder, handleChange, handleBlur, value, error, touched } = props;
+
+    const isValid = !!(touched && !!error);
 
    return (
        <Container>
            <Label>{label}</Label>
-           <Input placeholder={placeholder}></Input>
+           <Input
+               id={field}
+               name={field}
+               placeholder={placeholder}
+               onChange={handleChange}
+               onBlur={handleBlur}
+               value={value}
+               $isValid={!isValid}
+           ></Input>
        </Container>
    );
 }
@@ -36,7 +52,7 @@ const Label = styled.label`
     color: var(--dark-100);
 `;
 
-const Input = styled.textarea`
+const Input = styled.textarea<{ $isValid: boolean }>`
     border: 0;
     border-radius: 0.75em;
     width: 100%;
@@ -51,5 +67,11 @@ const Input = styled.textarea`
     
     &:focus-visible {
         outline-color: var(--navy-100);
+    }
+
+    ${({ $isValid }) =>
+        !$isValid && css`
+            border: 1px solid var(--error-0);
+        `
     }
 `;
