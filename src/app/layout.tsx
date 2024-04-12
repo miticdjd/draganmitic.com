@@ -5,6 +5,7 @@ import "./globals.css";
 import {Header} from "@/components/Header";
 import {Footer} from "@/components/Footer";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -52,6 +53,7 @@ export default function RootLayout({
             </ReCaptchaProvider>
         </StyledComponentsRegistry>
       </body>
+      <GoogleAnalytics gaId="G-DFQK2H0FFN" />
     </html>
   );
 }
