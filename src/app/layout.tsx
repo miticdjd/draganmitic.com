@@ -4,6 +4,7 @@ import StyledComponentsRegistry from '../../lib/registry';
 import "./globals.css";
 import {Header} from "@/components/Header";
 import {Footer} from "@/components/Footer";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -24,8 +25,13 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dragan Mitić",
-  description: "Welcome to Dragan Mitić’s Digital Hub!",
+    title: "Dragan Mitić",
+    description: "Welcome to Dragan Mitić’s Digital Hub!",
+    keywords: ['Dragan', 'Mitić', 'Entrepreneur', 'Software Engineer'],
+    openGraph: {
+        images: '/dragan.jpg'
+    },
+    metadataBase: new URL('https://www.draganmitic.com')
 };
 
 export default function RootLayout({
@@ -37,11 +43,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} ${syncopate.variable} ${ibmPlexMono.variable} font-sans`}>
         <StyledComponentsRegistry>
-            <div className="container mx-auto flex flex-col px-8 h-screen">
-                <Header />
-                {children}
-                <Footer dark={false} />
-            </div>
+            <ReCaptchaProvider>
+                <div className="container mx-auto flex flex-col px-8 h-screen">
+                    <Header />
+                    {children}
+                    <Footer dark={false} />
+                </div>
+            </ReCaptchaProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -5,7 +5,7 @@ interface Props {
    children: ReactNode;
    onClick?: () => void;
    type?: "button" | "submit" | "reset";
-   disabled: boolean;
+   disabled?: boolean;
 }
 
 export const Button = (props: Props) => {

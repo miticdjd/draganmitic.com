@@ -12,9 +12,11 @@ import {H2} from "@/components/Text/H2";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
 import {Spinner} from "@/components/Spinner";
+import { useReCaptcha } from "next-recaptcha-v3";
 
 export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const { executeRecaptcha } = useReCaptcha();
 
     const form = useFormik({
         initialValues: {
@@ -28,12 +30,14 @@ export default function Contact() {
             message: Yup.string().required('Required'),
         }),
         onSubmit: async values => {
+            const token = await executeRecaptcha("contact_form");
+
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(values)
+                body: JSON.stringify({...values, token})
             });
 
             if (response.status === 200) {

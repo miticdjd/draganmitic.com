@@ -39,7 +39,7 @@ const Links = styled.div`
     align-items: center;
     gap: 24px;
     color: var(--dark-100);
-    font-size: 28px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -73,7 +73,7 @@ const MenuLink = styled.span`
 const CTA = styled.button`
     border-radius: 12px;
     border: 1px solid var(--dark-100);
-    padding: 18px 32px 14px 32px;
+    padding: 10px 20px 8px 20px;
     display: flex;
     gap: 12px;
     line-height: 28px;

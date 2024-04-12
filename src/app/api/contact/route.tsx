@@ -4,6 +4,21 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
     const response = await request.json();
 
+    const secretKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY;
+
+    const verificationUrl =
+        "https://www.google.com/recaptcha/api/siteverify?secret=" +
+        secretKey +
+        "&response=" +
+        response.token;
+
+    const captchaResponse = await fetch(verificationUrl);
+    const captcha = await captchaResponse.json();
+
+    if (captcha.success !== true && captcha.score <= 0.5) {
+        return Response.json({ message: 'failed' }, { status: 403 });
+    }
+
     const mailHost = process.env.MAIL_HOST;
     const mailPort = process.env.MAIL_PORT;
     const mailUsername = process.env.MAIL_USERNAME;
