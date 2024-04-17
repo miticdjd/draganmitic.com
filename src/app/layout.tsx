@@ -1,30 +1,38 @@
 import type { Metadata } from "next";
-import { Inter, Ubuntu } from "next/font/google";
+import { Poppins, Syncopate, IBM_Plex_Mono } from "next/font/google";
 import StyledComponentsRegistry from '../../lib/registry';
 import "./globals.css";
+import {Header} from "@/components/Header";
+import {Footer} from "@/components/Footer";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-const inter = Inter({
+const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
     subsets: ['latin'],
-    variable: '--font-inter'
+    variable: '--font-poppins'
 });
 
-const ubuntu = Ubuntu({
-    weight: ['300', '400', '500', '700'],
+const syncopate = Syncopate({
+    weight: ['400', '700'],
     subsets: ['latin'],
-    variable: '--font-ubuntu'
+    variable: '--font-syncopate'
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+    weight: ['100', '200', '300', '400', '500', '600', '700'],
+    subsets: ['latin'],
+    variable: '--font-ibm-plex-mono'
 });
 
 export const metadata: Metadata = {
-    title: "Marketing Planer",
-    description: "Master marketing planer",
-    keywords: ['Marketing', 'Planer', 'Klka', 'Digital', 'KlikaDigital', 'Anastasia', 'Nikolaidou', 'Mitić'],
+    title: "Dragan Mitić",
+    description: "Welcome to Dragan Mitić’s Digital Hub!",
+    keywords: ['Dragan', 'Mitić', 'Entrepreneur', 'Software Engineer'],
     openGraph: {
         images: '/dragan.jpg'
     },
-    metadataBase: new URL('https://marketing-planer.klikadigital.com')
+    metadataBase: new URL('https://www.draganmitic.com')
 };
 
 export default function RootLayout({
@@ -34,16 +42,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${ubuntu.variable} font-sans`}>
+      <body className={`${poppins.variable} ${syncopate.variable} ${ibmPlexMono.variable} font-sans`}>
         <StyledComponentsRegistry>
-            {/*<ReCaptchaProvider>*/}
-                <div className="flex flex-col">
+            <ReCaptchaProvider>
+                <div className="container mx-auto flex flex-col px-8 h-screen">
+                    <Header />
                     {children}
+                    <Footer dark={false} />
                 </div>
-            {/*</ReCaptchaProvider>*/}
+            </ReCaptchaProvider>
         </StyledComponentsRegistry>
       </body>
-      {/*<GoogleAnalytics gaId="G-DFQK2H0FFN" />*/}
+      <GoogleAnalytics gaId="G-DFQK2H0FFN" />
     </html>
   );
 }

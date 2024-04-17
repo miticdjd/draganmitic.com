@@ -5,13 +5,33 @@
 html {
   scroll-behavior: smooth;
 
-  --brown-light: #E2DAD4;
-  --brown-dark: #74584D;
-  --brown-solid: #B48B78;
+  --dark-100: #1F1F1F;
+  --navy-100: #0F1B67;
+  --white-100: #F5F5FA;
+  --white-0: #FFFFFF;
+  --error-0: #b30000;
+}
 
-  --black: #29000A;
+body {
+  background-color: var(--white-0);
+  color: var(--dark-100);
+  font-family: var(--font-poppins);
 
-  --white: #FFFFFF;
+  font-size: 14px;
+}
 
-  --error: #EC6D6D;
+h1 {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: var(--font-ibm-plex-mono);
+}
+
+h2 {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: var(--font-ibm-plex-mono);
 }
