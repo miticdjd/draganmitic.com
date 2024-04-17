@@ -4,6 +4,7 @@ import styled, {css} from 'styled-components';
 
 interface TextProps {
     field: string;
+    label: string;
     placeholder: string;
     handleChange: (e: React.ChangeEvent<any>) => void;
     handleBlur: (e: React.ChangeEvent<any>) => void;
@@ -13,12 +14,13 @@ interface TextProps {
 }
 
 export const Text = (props: TextProps) => {
-    const { field, placeholder, handleChange, handleBlur, value, error, touched } = props;
+    const { field, label, placeholder, handleChange, handleBlur, value, error, touched } = props;
 
     const isValid = !!(touched && !!error);
 
    return (
        <Container>
+           <Label>{label}</Label>
            <Input
                id={field}
                name={field}
@@ -34,44 +36,41 @@ export const Text = (props: TextProps) => {
 
 const Container = styled.div`
     background-color: white;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 0.75em;
 `;
 
-const Input = styled.input<{ $isValid: boolean }>`
-    border-radius: 4px;
-    width: 100%;
-    background-color: var(--white);
-    padding: 0 8px;
-    font-family: var(--font-ubuntu);
+const Label = styled.label`
+    font-family: var(--font-poppins);
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: normal;
-    height: 48px;
-    min-width: 200px;
-    min-height: 48px;
-    border: 1px solid var(--brown-light);
-    text-align: center;
-    
-    &::placeholder {
-        font-family: var(--font-ubuntu);
-        font-size: 14px;
-        font-style: normal;
-        color: var(--brown-solid);
-        text-transform: uppercase;
-    }
-    
+    color: var(--dark-100);
+`;
+
+const Input = styled.input<{ $isValid: boolean }>`
+    border: 0;
+    border-radius: 0.75em;
+    width: 100%;
+    background-color: var(--white-100);
+    padding: 0.75em;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
     
     &:focus-visible {
-        outline-color: var(--brown-dark);
+        outline-color: var(--navy-100);
     }
     
     ${({ $isValid }) => 
         !$isValid && css`
-            border: 1px solid var(--error);
+            border: 1px solid var(--error-0);
         `
     }
 `;

@@ -17,7 +17,7 @@ export const Button = (props: Props) => {
    } = props;
 
    return <Container
-       className="flex w-full lg:w-64"
+       className="flex w-full lg:w-48"
        onClick={() => onClick && onClick()}
        type={type}
        disabled={disabled}
@@ -27,17 +27,18 @@ export const Button = (props: Props) => {
 }
 
 const Container = styled.button`
-    height: 48px;
+    height: 36px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 12px;
-    border-radius: 4px;
-    background-color: var(--brown-dark);
-    color: var(--white);
-    font-family: var(--font-ubuntu);
-    font-size: 18px;
+    gap: 0.75em;
+    padding: 0.5em;
+    border-radius: 0.75em;
+    background-color: var(--navy-100);
+    color: var(--white-100);
+    font-family: var(--font-syncopate);
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
