@@ -3,17 +3,20 @@ import styled from "styled-components";
 
 interface Props {
    children: ReactNode;
+   align?: 'left'|'center'|'right';
 }
 
 export const Paragraph = (props: Props) => {
-   const { children } = props;
+   const { children, align = 'left' } = props;
 
-   return <Text>{children}</Text>;
+   return <StyledParagraph className={`text-${align}`} >{children}</StyledParagraph>;
 }
 
-const Text = styled.p`
-   font-family: var(--font-poppins);
+const StyledParagraph = styled.p`
+   color: var(--black);
+   font-family: var(--font-inter);
+   font-size: 14px;
    font-style: normal;
-   font-weight: 300;
+   font-weight: 400;
    line-height: normal;
 `;
