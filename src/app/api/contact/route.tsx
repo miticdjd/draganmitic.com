@@ -4,7 +4,8 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
     const response = await request.json();
 
-    const secretKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY;
+    // Required at runtime; keep types strict for Next/TS builds.
+    const secretKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY!;
 
     const verificationUrl =
         "https://www.google.com/recaptcha/api/siteverify?secret=" +
@@ -19,13 +20,14 @@ export async function POST(request: Request) {
         return Response.json({ message: 'failed' }, { status: 403 });
     }
 
-    const mailHost = process.env.MAIL_HOST;
-    const mailPort = process.env.MAIL_PORT;
-    const mailUsername = process.env.MAIL_USERNAME;
-    const mailPassword = process.env.MAIL_PASSWORD;
-    const mailFromAddress = process.env.MAIL_FROM_ADDRESS;
-    const mailFromName = process.env.MAIL_FROM_NAME;
-    const mailToAddress = process.env.MAIL_TO_ADDRESS;
+    const mailHost = process.env.MAIL_HOST!;
+    // `createTransport` expects `port` as a number, but `process.env` is string | undefined.
+    const mailPort = Number(process.env.MAIL_PORT ?? 587);
+    const mailUsername = process.env.MAIL_USERNAME!;
+    const mailPassword = process.env.MAIL_PASSWORD!;
+    const mailFromAddress = process.env.MAIL_FROM_ADDRESS!;
+    const mailFromName = process.env.MAIL_FROM_NAME!;
+    const mailToAddress = process.env.MAIL_TO_ADDRESS!;
 
     let transporter = nodemailer.createTransport({
         host: mailHost,
