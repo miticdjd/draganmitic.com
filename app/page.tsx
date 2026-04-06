@@ -12,8 +12,8 @@ export default function AboutPage() {
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <motion.img
-              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
-              alt="Laptop with code in a cafe"
+              src="/dragan.jpg"
+              alt="Portrait of Dragan Mitic"
               initial={{ rotate: 3, opacity: 0, scale: 0.9, y: 20 }}
               animate={{ rotate: 3, opacity: 1, scale: 1, y: 0 }}
               whileHover={{
