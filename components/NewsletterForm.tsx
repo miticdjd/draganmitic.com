@@ -5,16 +5,45 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
+    'idle'
+  );
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
     setStatus('loading');
-    setTimeout(() => {
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          tags: ['draganmitic.com'],
+        }),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Subscription failed. Please try again.');
+      }
+
       setStatus('success');
       setEmail('');
-    }, 1200);
+      setMessage('Thanks for subscribing! You are now on the list.');
+    } catch (error) {
+      setStatus('error');
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.'
+      );
+    }
   };
 
   return (
@@ -68,7 +97,13 @@ export default function NewsletterForm() {
                 aria-label="Email address"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (status === 'error') {
+                    setStatus('idle');
+                    setMessage('');
+                  }
+                }}
                 className="w-full appearance-none rounded-xl border border-zinc-900/10 bg-white px-4 py-3.5 shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-brand dark:focus:ring-brand/10 sm:text-sm transition-all"
               />
             </div>
@@ -117,7 +152,19 @@ export default function NewsletterForm() {
             >
               <path d="M20 6L9 17l-5-5" />
             </svg>
-            Success! You&apos;ve been added to the list.
+            {message || 'Thanks for subscribing! You are now on the list.'}
+          </motion.p>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {status === 'error' && (
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="mt-6 text-sm text-red-600 dark:text-red-400 font-medium"
+          >
+            {message}
           </motion.p>
         )}
       </AnimatePresence>
