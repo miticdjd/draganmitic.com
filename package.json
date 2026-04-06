@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.1024.0",
     "framer-motion": "^11.18.2",
     "next": "^15.1.0",
     "react": "^19.0.0",

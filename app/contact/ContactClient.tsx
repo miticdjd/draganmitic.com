@@ -9,13 +9,13 @@ export default function ContactClient() {
   const [status, setStatus] = useState<'idle' | 'success'>('idle');
 
   // Email parts for obfuscation
-  const emailUser = 'dragan';
-  const emailDomain = 'hefesgroup.com';
+  const emailUser = 'hello';
+  const emailDomain = 'draganmitic.com';
 
   // Phone parts for obfuscation (Serbia country code +381)
   const phoneCountry = '+381';
-  const phoneArea = '60';
-  const phoneRest = '1234567';
+  const phoneArea = '69';
+  const phoneRest = '775051';
 
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();

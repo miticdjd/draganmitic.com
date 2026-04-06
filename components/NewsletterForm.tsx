@@ -85,7 +85,7 @@ export default function NewsletterForm() {
             <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
               Get notified when I publish something new, and unsubscribe at any
               time. I promise no spam, just quality updates about software
-              engineering and tech.
+              engineering and product development.
             </p>
           </div>
 

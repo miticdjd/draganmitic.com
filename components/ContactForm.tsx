@@ -12,7 +12,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     email: '',
     message: '',
   });
-  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,15 +22,36 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to send your message.');
+      }
+
       onSuccess();
       setFormData({ name: '', email: '', message: '' });
       setStatus('idle');
-    }, 1500);
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Unable to send your message. Please try again.'
+      );
+    }
   };
 
   return (
@@ -94,6 +116,11 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           {status === 'submitting' ? 'Sending...' : 'Send Message'}
         </button>
       </div>
+      {status === 'error' && (
+        <p className="text-sm font-medium text-red-600 dark:text-red-400">
+          {errorMessage}
+        </p>
+      )}
     </form>
   );
 }
