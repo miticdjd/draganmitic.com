@@ -22,11 +22,7 @@ export default function ProjectsClient() {
           transition={{ delay: 0.1 }}
           className="mt-6 text-base text-zinc-600 dark:text-zinc-400"
         >
-          I&apos;ve worked on tons of little projects over the years but these
-          are the ones that I&apos;m most proud of. Many of them are
-          open-source, so if you see something that piques your interest, check
-          out the code and contribute if you have ideas for how it can be
-          improved.
+          These are the projects I’ve built and continue to work on. They represent my ideas, experiments, and long-term efforts to create meaningful products I truly care about.
         </motion.p>
       </header>
 

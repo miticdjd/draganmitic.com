@@ -4,46 +4,37 @@ import { Project, SocialLink } from './types';
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Planetaria',
+    title: 'Hefes Technology Group',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    logo: 'https://picsum.photos/seed/planet/100/100',
-    link: 'https://planetaria.tech',
-    linkText: 'planetaria.tech',
+      'A product-focused software company I founded to turn ideas into scalable systems.',
+    logo: '/projects/htg.png',
+    link: 'https://hefesgroup.com',
+    linkText: 'hefesgroup.com',
   },
   {
     id: '2',
-    title: 'Animaginary',
+    title: 'Kiddly',
     description:
-      'High-performance grid computing runtime built with Rust and WebAssembly.',
-    logo: 'https://picsum.photos/seed/anim/100/100',
-    link: 'https://animaginary.io',
-    linkText: 'animaginary.io',
+      'Kiddly is an open-source preschool management platform designed to modernize early education systems.',
+    logo: '/projects/kiddly.png',
+    link: 'https://kiddly.io',
+    linkText: 'kiddly.io',
   },
   {
     id: '3',
-    title: 'HelioStream',
+    title: 'Avovent',
     description:
-      'Solar-powered real-time data streaming platform for remote environmental sensors.',
-    logo: 'https://picsum.photos/seed/helio/100/100',
-    link: 'https://heliostream.net',
-    linkText: 'heliostream.net',
-  },
-  {
-    id: '4',
-    title: 'OpenVideo',
-    description:
-      'An open-source library for high-speed video transcoding in the browser.',
-    logo: 'https://picsum.photos/seed/video/100/100',
-    link: 'https://github.com/openvideo',
-    linkText: 'github.com',
-  },
+      'Cloud event ecosystem  that interconnects organizers, speakers, attendees, sponsors, and exhibitors under one roof',
+    logo: '/projects/avovent.png',
+    link: 'https://avovent.com',
+    linkText: 'avovent.com',
+  }
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'X',
-    url: 'https://x.com',
+    url: 'https://x.com/miticdjd',
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -56,7 +47,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: 'Instagram',
-    url: 'https://instagram.com',
+    url: 'https://instagram.com/miticdjd',
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -73,7 +64,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: 'GitHub',
-    url: 'https://github.com',
+    url: 'https://github.com/miticdjd',
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -90,7 +81,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com',
+    url: 'https://linkedin.com/in/miticdjd',
     icon: (
       <svg
         viewBox="0 0 24 24"
