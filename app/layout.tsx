@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Familjen_Grotesk } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout';
 
@@ -107,6 +108,7 @@ export default function RootLayout({
       </head>
       <body className="bg-zinc-50 dark:bg-black transition-colors duration-300 font-sans antialiased">
         <ClientLayout>{children}</ClientLayout>
+        <GoogleAnalytics gaId="G-DFQK2H0FFN" />
       </body>
     </html>
   );
