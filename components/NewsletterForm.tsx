@@ -21,10 +21,7 @@ export default function NewsletterForm() {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          tags: ['draganmitic.com'],
-        }),
+        body: JSON.stringify({ email }),
       });
 
       const data = (await response.json()) as { error?: string };

@@ -1,25 +1,28 @@
 import { NextResponse } from 'next/server';
 
-type CaptureRequest = {
+type SignupRequest = {
   email: string;
+  first_name?: string;
   name?: string;
-  tags?: string[];
 };
 
-export async function POST(request: Request) {
-  const token = process.env.MAILLAYER_CAPTURE_TOKEN;
+const MAILLAYER_HOOK_URL =
+  'https://maillayer.hefesgroup.com/api/hooks/itg_FVzlzu0aKsCz';
 
-  if (!token) {
+export async function POST(request: Request) {
+  const secret = process.env.MAILLAYER_HOOK_SECRET;
+
+  if (!secret) {
     return NextResponse.json(
       { error: 'Newsletter is not configured.' },
       { status: 500 }
     );
   }
 
-  let body: CaptureRequest;
+  let body: SignupRequest;
 
   try {
-    body = (await request.json()) as CaptureRequest;
+    body = (await request.json()) as SignupRequest;
   } catch {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
   }
@@ -29,26 +32,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Email is required.' }, { status: 400 });
   }
 
+  const firstName = body.first_name?.trim() || body.name?.trim();
   const payload = {
-    email,
-    ...(body.name ? { name: body.name.trim() } : {}),
-    tags:
-      body.tags && body.tags.length > 0
-        ? body.tags
-        : [process.env.MAILLAYER_DEFAULT_TAG || 'draganmitic.com'],
+    event: 'user.signup',
+    data: {
+      email,
+      ...(firstName ? { first_name: firstName } : {}),
+    },
   };
 
   try {
-    const response = await fetch(
-      `https://maillayer.com/api/v1/contacts/capture/${token}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }
-    );
+    const response = await fetch(MAILLAYER_HOOK_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-    const result = (await response.json()) as { error?: string };
+    const result = (await response.json().catch(() => ({}))) as {
+      error?: string;
+    };
 
     if (!response.ok) {
       return NextResponse.json(
