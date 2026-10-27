@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { NAV_ITEMS, SITE } from '@/lib/constants';
 import { cn, wrap } from '@/lib/styles';
+import CopyrightYear from './CopyrightYear';
 
 export default function SiteFooter() {
   return (
@@ -26,7 +27,7 @@ export default function SiteFooter() {
       </div>
       <div className="mt-10 flex justify-between gap-6 text-[9px] text-muted max-md:mt-[30px] max-md:flex-wrap max-md:gap-[14px] max-md:text-[8px]">
         <p>
-          © {new Date().getFullYear()} {SITE.name}.
+          © <CopyrightYear /> {SITE.name}.
         </p>
         <p>
           Made with{' '}
