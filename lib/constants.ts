@@ -1,4 +1,4 @@
-import htgLogo from '@/public/projects/htg.png';
+import htgLogo from '@/public/projects/htg-mark.svg';
 import kiddlyLogo from '@/public/projects/kiddly.png';
 import avoventLogo from '@/public/projects/avovent.png';
 import type { NavItem, Project, SocialLink } from './types';
