@@ -1,45 +1,32 @@
-'use client';
-
-import React from 'react';
 import { SOCIAL_LINKS } from '@/lib/constants';
+import { cn } from '@/lib/styles';
+import { ArrowUpRight } from './ui/icons';
 
-interface SocialLinksProps {
-  showLabel?: boolean;
+type SocialLinksProps = {
+  variant?: 'inline' | 'grid';
   className?: string;
-}
+};
 
-export default function SocialLinks({
-  showLabel = false,
-  className = '',
-}: SocialLinksProps) {
+export default function SocialLinks({ variant = 'inline', className }: SocialLinksProps) {
   return (
-    <div className={`flex gap-6 ${className}`}>
+    <div
+      className={cn(
+        variant === 'grid'
+          ? 'grid grid-cols-2 gap-y-6 max-md:flex max-md:flex-wrap max-md:gap-[25px]'
+          : 'flex flex-wrap gap-[23px] max-md:gap-[22px]',
+        className
+      )}
+    >
       {SOCIAL_LINKS.map((social) => (
         <a
           key={social.name}
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group -m-1 p-1"
-          aria-label={`Follow on ${social.name}`}
+          className="flex items-center gap-[7px] text-[11px] hover:text-accent"
         >
-          <div className="flex items-center">
-            <div className="flex h-6 w-6 items-center justify-center transition group-hover:scale-110">
-              {React.cloneElement(
-                social.icon as React.ReactElement<{ className?: string }>,
-                {
-                  className: `${
-                    social.name === 'X' ? 'h-5 w-5' : 'h-6 w-6'
-                  } fill-zinc-500 transition group-hover:fill-brand dark:fill-zinc-400 dark:group-hover:fill-brand`,
-                }
-              )}
-            </div>
-            {showLabel && (
-              <span className="ml-4 text-sm font-medium text-zinc-800 transition group-hover:text-brand dark:text-zinc-200 dark:group-hover:text-brand">
-                {social.name}
-              </span>
-            )}
-          </div>
+          {social.name}
+          <ArrowUpRight className="size-3" />
         </a>
       ))}
     </div>

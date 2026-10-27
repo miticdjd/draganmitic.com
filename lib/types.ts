@@ -1,21 +1,27 @@
-import React from 'react';
+import type { StaticImageData } from 'next/image';
+
+export type ProjectVisualKind = 'htg' | 'kiddly' | 'avovent';
 
 export interface Project {
-  id: string;
+  slug: string;
+  number: string;
   title: string;
+  category: string;
   description: string;
-  logo: string;
+  tags: string[];
+  logo: StaticImageData;
   link: string;
-  linkText: string;
+  domain: string;
+  visual: ProjectVisualKind;
 }
 
 export interface SocialLink {
   name: string;
   url: string;
-  icon: React.ReactNode;
 }
 
-export enum Theme {
-  LIGHT = 'light',
-  DARK = 'dark',
+export interface NavItem {
+  index: string;
+  label: string;
+  href: string;
 }
