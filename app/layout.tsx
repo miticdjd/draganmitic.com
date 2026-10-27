@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Familjen_Grotesk } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
-import ClientLayout from '@/components/ClientLayout';
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -49,21 +50,12 @@ export const metadata: Metadata = {
     title: 'Dragan Mitić - Software Engineer & CEO',
     description:
       'Seasoned software engineer and CEO of Hefes Technology Group, crafting cutting-edge software solutions.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Dragan Mitić - Software Engineer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Dragan Mitić - Software Engineer & CEO',
     description:
       'Seasoned software engineer and CEO of Hefes Technology Group.',
-    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -87,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${familjenGrotesk.variable}`}
+      className={`${inter.variable} ${familjenGrotesk.variable} scroll-smooth scroll-pt-[30px]`}
       suppressHydrationWarning
     >
       <head>
@@ -106,8 +98,19 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-zinc-50 dark:bg-black transition-colors duration-300 font-sans antialiased">
-        <ClientLayout>{children}</ClientLayout>
+      <body
+        id="top"
+        className="bg-paper font-sans text-[16px] text-ink antialiased transition-colors duration-[250ms] selection:bg-[#dcecff] selection:text-[#273449]"
+      >
+        <a
+          href="#main"
+          className="absolute -top-[70px] left-5 z-10 bg-ink p-[15px] text-paper focus:top-[10px]"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
         <GoogleAnalytics gaId="G-DFQK2H0FFN" />
       </body>
     </html>

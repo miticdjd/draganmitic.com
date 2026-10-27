@@ -99,3 +99,14 @@ export const ABOUT_TEXT = `Welcome to my corner of the web! I'm Dragan Mitić, a
 As the CEO of Hefes Technology Group, I lead a passionate team dedicated to empowering digital landscapes through cutting-edge software solutions. Our journey is fueled by a relentless pursuit of excellence, and we take pride in crafting digital experiences that transcend expectations.
 
 I invite you to check out my latest projects and feel free to contact me if you require any assistance. I am confident I can provide you with the help you need.`;
+
+export const NAV_ITEMS = [
+  { index: '01', label: 'About', href: '/' },
+  { index: '02', label: 'Projects', href: '/projects' },
+  { index: '03', label: 'Contact', href: '/contact' },
+] as const;
+
+export const SITE = {
+  name: 'Dragan Mitić',
+  company: { name: 'HTG', url: 'https://hefesgroup.com' },
+} as const;
